@@ -1,0 +1,53 @@
+<div class='container'>
+<h1>Sign Up</h1>
+<%= form_with model: @user, url: create_user_path do |t| %>
+    <div class="mb-3">
+    <%= t.label :name , :class=>"form-label"%>
+    <%= t.text_field :name, :class=>"form-control" %>
+    <% if @user.errors.messages[:name].blank? == false %>
+        <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @user.errors.messages[:name].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+    <%end%>
+    </div>
+
+    <div class="mb-3">
+    <%= t.label :email, :class=>"form-label" %>
+    <%= t.text_field :email, :class=>"form-control"  %>
+    <% if @user.errors.messages[:email].blank? == false %>
+        <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @user.errors.messages[:email].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+    <%end%>
+    </div>
+
+    <div class="mb-3">
+        <%= t.label :password, :class=>"form-label" %>
+        <%= t.text_field :password, :class=>"form-control" %>
+        <% if @user.errors.messages[:password].blank? == false %>
+            <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @user.errors.messages[:password].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+        <%end%>
+    </div>
+    
+    <div class="mb-3">
+        <%= t.label :password_confirmation, :class=>"form-label" %>
+        <%= t.text_field :password_confirmation, :class=>"form-control" %>
+        <% if @user.errors.messages[:password_confirmation].blank? == false %>
+            <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @user.errors.messages[:password_confirmation].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+        <%end%>
+    </div>
+    <%= t.submit %>
+<% end %>
+</div>
