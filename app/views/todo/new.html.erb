@@ -1,0 +1,43 @@
+<div class='container'>
+<h1>Create Todo</h1>
+<%= form_with model: @todo, url: create_todo_path do |t| %>
+
+    <div class="mb-3">
+    <%= t.label :title, :class=>"form-label" %>
+    <%= t.text_field :title, :class=>"form-control"  %>
+    <% if @todo.errors.messages[:title].blank? == false %>
+        <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @todo.errors.messages[:title].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+    <%end%>
+    </div>
+
+    <div class="mb-3">
+        <%= t.label :action, :class=>"form-label" %>
+        <%= t.text_field :action, :class=>"form-control" %>
+        <% if @todo.errors.messages[:action].blank? == false %>
+            <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @todo.errors.messages[:kaction].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+        <%end%>
+    </div>
+    
+    <div class="mb-3">
+        <%= t.label :deadline, :class=>"form-label" %>
+        <%= t.date_field :datetime, :class=>"form-control" %>
+        <% if @todo.errors.messages[:datetime].blank? == false %>
+            <div class='alert alert-danger' role='alert' style='padding: 5px;'>
+                <% @todo.errors.messages[:datetime].each do |msg|  %>
+                    <p style='margin: 0;'><%= msg %></p>
+                <%end %>
+            </div>
+        <%end%>
+    </div>
+    
+    <%= t.submit 'Add Todo'%>
+<% end %>
+</div>

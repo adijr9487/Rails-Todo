@@ -1,1 +1,32 @@
 <h1>Welcome ! <%= @user.name %></h1>
+<%= link_to 'Create Todo', new_todo_path %>
+
+
+
+<% @todos.each do |todo| %>
+<div class="card container" style='margin: 10px auto;'>
+  <div class="card-body" style='text-decoration: <%= todo.completed ? 'line-through' : 'initial'%>;' >
+    <label style='font-size: 0.7rem;'>Action</label>
+    <%= todo.title %></br>
+    <label style='font-size: 0.7rem;'>Title</label>
+    <%= todo.action %></br>
+    <label style='font-size: 0.7rem;'>Status</label>
+    <%= todo.completed ? 'Completed' : 'Pending' %>
+    <div class='contianer'>
+        <% if todo.completed? == false %>
+            <%= link_to 'Mark As Done', mark_complete_todo_path(todo), data: {
+                turbo_confirm: 'Are you sure you want to mark this todo as complete?',
+                turbo_method: :patch
+                } ,
+                :class=>'btn btn-primary btn-sm'%>
+        <%end%>
+        <%= link_to 'Delete', delete_todo_path(todo), data: {
+            turbo_confirm: 'Are you sure want to delete this todo?',
+            turbo_method: :delete
+            } ,
+            :class=>'btn btn-danger btn-sm'
+        %>
+    </div>
+  </div>
+</div>
+<%end%>
